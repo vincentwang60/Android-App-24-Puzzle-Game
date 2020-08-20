@@ -9,14 +9,16 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    int x = 0;
+    int y = 0;
+    Card card;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ImageView number2 = (ImageView) findViewById(R.id.card1);
-        card obj = new card(number2,R.drawable.nines);
+        card = new Card(number2,R.drawable.nines);
         /*final TextView number2 = (TextView) findViewById(R.id.number2);
         final TextView number3 = (TextView) findViewById(R.id.number3);
         final TextView number4 = (TextView) findViewById(R.id.number4);*/
@@ -24,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
+        x = (int)event.getX();
+        y = (int)event.getY();
+        card.setTouchPos(x,y);
+        //card.update();
         int[] offset = {-100,-150};
 
         TextView text = (TextView) findViewById(R.id.text1);
