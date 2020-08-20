@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -14,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        card obj = new card();
-        final TextView number1 = (TextView) findViewById(R.id.number1);
+        ImageView number2 = (ImageView) findViewById(R.id.card1);
+        card obj = new card(number2,R.drawable.nines);
         /*final TextView number2 = (TextView) findViewById(R.id.number2);
         final TextView number3 = (TextView) findViewById(R.id.number3);
         final TextView number4 = (TextView) findViewById(R.id.number4);*/

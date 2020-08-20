@@ -1,14 +1,13 @@
 package edu.mit.vkwang;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class card extends AppCompatActivity{
-    public card(){
-        setContentView(R.layout.activity_main);
-        final TextView number2 = (TextView) findViewById(R.id.number2);
+    public card(ImageView gCard1,int resId){
+        ImageView card1 = gCard1;
+        card1.setImageResource(resId);
     }
 }
