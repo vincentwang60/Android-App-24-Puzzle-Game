@@ -1,5 +1,6 @@
 package edu.mit.vkwang;
 
+import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Card extends AppCompatActivity{
     ImageView card;
 
-    public Card(ImageView gCard1,int resId){
+    @SuppressLint("ClickableViewAccessibility")
+    public Card(ImageView gCard1, int resId){
         card = gCard1;
         card.setImageResource(resId);
         card.setOnTouchListener(new View.OnTouchListener(){
