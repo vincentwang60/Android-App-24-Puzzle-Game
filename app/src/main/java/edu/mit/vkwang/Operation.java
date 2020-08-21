@@ -1,25 +1,31 @@
 package edu.mit.vkwang;
 
 import android.annotation.SuppressLint;
+import android.media.Image;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Card extends AppCompatActivity{
-    ImageView card;
-    boolean selected = false;
+public class Operation extends AppCompatActivity{
+    ImageView opImg;
+    boolean moved = false;
+    boolean replaced = false;
+    int type = 0;
+    int resId = 0;
     private float xCoOrdinate;
     private float yCoOrdinate;
 
     @SuppressLint("ClickableViewAccessibility")
-    public Card(ImageView gCard1, final int resId){
-        card = gCard1;
-        card.setImageResource(resId);
-        card.setOnTouchListener(new View.OnTouchListener() {
+    public Operation(ImageView img, int gType,int gResId,final MainActivity test){
+        resId = gResId;
+        type = gType;
+        opImg = img;
+        opImg.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
+                test.makeNewOp(resId,type,resId);
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                         xCoOrdinate = view.getX() - event.getRawX();
@@ -32,5 +38,6 @@ public class Card extends AppCompatActivity{
                 return true;
             }
         });
+
     }
 }

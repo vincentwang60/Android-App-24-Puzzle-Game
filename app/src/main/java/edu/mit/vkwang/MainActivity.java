@@ -1,29 +1,31 @@
 package edu.mit.vkwang;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.annotation.SuppressLint;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     int x = 0;
     int y = 0;
     Card[] cards = new Card[4];
+    Operation[] ops = new Operation[4];
+    ConstraintLayout screen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        screen = (ConstraintLayout) findViewById(R.id.screen);
 
         String string = "";
         ArrayList<String> combos = new ArrayList<String>();
@@ -65,5 +67,24 @@ public class MainActivity extends AppCompatActivity {
             }
             cards[i] = new Card(image, resID);
         }
+
+        ops[0] = new Operation((ImageView) findViewById(R.id.op1),0,R.id.op1,this);
+        ops[1] = new Operation((ImageView) findViewById(R.id.op2),0,R.id.op2,this);
+        ops[2] = new Operation((ImageView) findViewById(R.id.op3),0,R.id.op3,this);
+        ops[3] = new Operation((ImageView) findViewById(R.id.op4),0,R.id.op4,this);
+
+        for(int i =0; i < ops.length;i++){
+            if(ops[i].moved && !ops[i].replaced){
+                makeNewOp(ops[i].resId,ops[i].type,ops[i].resId);
+            }
+        }
+    }
+    public void makeNewOp(final int resId, int type, int parentId){
+        ImageView newOpImg = new ImageView(getApplicationContext());
+        newOpImg.setImageResource(getResources().getIdentifier("minus", "drawable", getPackageName()));
+        newOpImg.setLayoutParams(new android.view.ViewGroup.LayoutParams(80,60));
+        ops = Arrays.copyOf(ops, ops.length + 1);
+        ops[ops.length - 1] = new Operation(newOpImg,type,resId,this);
+        screen.addView(newOpImg);
     }
 }
