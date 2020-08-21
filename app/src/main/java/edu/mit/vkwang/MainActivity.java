@@ -2,6 +2,8 @@ package edu.mit.vkwang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -63,25 +65,5 @@ public class MainActivity extends AppCompatActivity {
             }
             cards[i] = new Card(image, resID);
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        x = (int)event.getX();
-        y = (int)event.getY();
-
-        int[] offset = {-100,-150};
-
-        TextView text = (TextView) findViewById(R.id.text1);
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-
-            case MotionEvent.ACTION_MOVE:
-                text.setText(Integer.toString(x)+','+Integer.toString(y));
-            case MotionEvent.ACTION_UP:
-        }
-
-        return false;
     }
 }
