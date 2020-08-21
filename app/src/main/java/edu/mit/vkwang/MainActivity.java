@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.BufferedReader;
@@ -16,7 +17,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
     int x = 0;
     int y = 0;
-    Card[] cards;
+    Card[] cards = new Card[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +46,21 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < cards.length; i++){
             String suit = suits[(int)(Math.random() * suits.length)];
             String cardID = cardIDs[i] + suit;
-            int resID = getResources().getIdentifier(cardID, "id", "package.name");
-            ImageView image = (ImageView) findViewById(resID);
+            int resID = getResources().getIdentifier(cardID, "drawable", getPackageName());
+
+            ImageView image = null;
+            if(i == 0){
+                image = (ImageView) findViewById(R.id.card1);
+            }
+            else if(i == 1){
+                image = (ImageView) findViewById(R.id.card2);
+            }
+            else if(i == 2){
+                image = (ImageView) findViewById(R.id.card3);
+            }
+            else{
+                image = (ImageView) findViewById(R.id.card4);
+            }
             cards[i] = new Card(image, resID);
         }
     }
@@ -56,23 +70,16 @@ public class MainActivity extends AppCompatActivity {
     {
         x = (int)event.getX();
         y = (int)event.getY();
-        for(Card card: cards){
-                if(card.selected){
-                    card.setTouchPos(x, y);
-                }
-        }
-        //card.update();
+
         int[] offset = {-100,-150};
 
         TextView text = (TextView) findViewById(R.id.text1);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+
             case MotionEvent.ACTION_MOVE:
                 text.setText(Integer.toString(x)+','+Integer.toString(y));
             case MotionEvent.ACTION_UP:
-                for(Card card : cards){
-                    card.selected = false;
-                }
         }
 
         return false;
