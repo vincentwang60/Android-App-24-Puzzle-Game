@@ -3,7 +3,9 @@ package edu.mit.vkwang;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
         screen = (ConstraintLayout) findViewById(R.id.screen);
 
         String string = "";
@@ -86,5 +89,9 @@ public class MainActivity extends AppCompatActivity {
         ops = Arrays.copyOf(ops, ops.length + 1);
         ops[ops.length - 1] = new Operation(newOpImg,type,resId,this);
         screen.addView(newOpImg);
+    }
+    public void sendMessage(View view){
+        Intent intent = new Intent(this, StartScreen.class);
+        startActivity(intent);
     }
 }
