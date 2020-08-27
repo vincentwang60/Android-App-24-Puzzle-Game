@@ -12,9 +12,9 @@
         android:id="@+id/imageButton"
         android:layout_width="50dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="360dp"
+        android:layout_marginRight="360dp"
         android:background="@null"
         android:onClick="sendMessage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,18 +32,7 @@
         app:srcCompat="@drawable/flair" />
 
     <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="500dp"
-        android:layout_height="5dp"
-        android:layout_marginBottom="197dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/border" />
-
-    <ImageView
-        android:id="@+id/empty1"
+        android:id="@+id/cardSlot1"
         android:layout_width="86dp"
         android:layout_height="132dp"
         android:layout_marginEnd="300dp"
@@ -55,7 +44,7 @@
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/empty2"
+        android:id="@+id/cardSlot2"
         android:layout_width="86dp"
         android:layout_height="132dp"
         android:layout_marginEnd="100dp"
@@ -67,11 +56,11 @@
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/empty3"
+        android:id="@+id/cardSlot3"
         android:layout_width="86dp"
         android:layout_height="132dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,26 +68,37 @@
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/empty4"
+        android:id="@+id/cardSlot4"
         android:layout_width="86dp"
         android:layout_height="132dp"
-        android:layout_marginLeft="300dp"
         android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/empty" />
+
+    <ImageView
+        android:id="@+id/border"
+        android:layout_width="408dp"
+        android:layout_height="163dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79"
+        app:srcCompat="@drawable/border" />
 
     <ImageView
         android:id="@+id/card1"
         android:layout_width="86dp"
         android:layout_height="132dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="300dp"
-        android:layout_marginRight="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/sevend" />
 
@@ -107,11 +107,10 @@
         android:layout_width="86dp"
         android:layout_height="132dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card4"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/card1"
         app:srcCompat="@drawable/sevend" />
 
     <ImageView
@@ -119,71 +118,164 @@
         android:layout_width="86dp"
         android:layout_height="132dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginStart="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card4"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toEndOf="@+id/card1"
         app:srcCompat="@drawable/sevend" />
 
     <ImageView
         android:id="@+id/card4"
         android:layout_width="86dp"
         android:layout_height="132dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginStart="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/sevend" />
+
+    <ImageView
+        android:id="@+id/dupOpSlot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot2"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot3"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot2"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot2"
+        app:srcCompat="@drawable/emptyop" />
+
+    <ImageView
+        android:id="@+id/dupOpSlot1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot1"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot2"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot1"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot1"
+        app:srcCompat="@drawable/emptyop" />
+
+    <ImageView
+        android:id="@+id/dupOpSlot3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot3"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot4"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot3"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot3"
+        app:srcCompat="@drawable/emptyop" />
 
     <ImageView
         android:id="@+id/op4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:layout_marginLeft="300dp"
         android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
         app:srcCompat="@drawable/divide" />
 
     <ImageView
         android:id="@+id/op3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
         app:srcCompat="@drawable/minus" />
 
     <ImageView
         android:id="@+id/op2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
         app:srcCompat="@drawable/times" />
 
     <ImageView
         android:id="@+id/op1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
         android:layout_marginEnd="300dp"
         android:layout_marginRight="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
+        app:srcCompat="@drawable/plus" />
+
+    <ImageView
+        android:id="@+id/dupOp4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
+        app:srcCompat="@drawable/divide" />
+
+    <ImageView
+        android:id="@+id/dupOp3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
+        app:srcCompat="@drawable/minus" />
+
+    <ImageView
+        android:id="@+id/dupOp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
+        app:srcCompat="@drawable/times" />
+
+    <ImageView
+        android:id="@+id/dupOp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748"
         app:srcCompat="@drawable/plus" />
 
     <TextView
@@ -200,11 +292,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/opSlot1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/emptyOp"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="333dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot1"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot2"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot1"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot1"
+        app:srcCompat="@drawable/emptyop" />
+
+    <ImageView
+        android:id="@+id/opSlot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot2"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot3"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot2"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot2"
+        app:srcCompat="@drawable/emptyop" />
+
+    <ImageView
+        android:id="@+id/opSlot3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSlot3"
+        app:layout_constraintEnd_toEndOf="@+id/cardSlot4"
+        app:layout_constraintStart_toStartOf="@+id/cardSlot3"
+        app:layout_constraintTop_toTopOf="@+id/cardSlot3"
+        app:srcCompat="@drawable/emptyop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
