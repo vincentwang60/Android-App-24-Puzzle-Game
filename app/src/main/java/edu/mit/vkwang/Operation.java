@@ -72,7 +72,6 @@ public class Operation extends AppCompatActivity{
     }
 
     public int getResID(){
-        System.out.println("in operation, resID: " + resID);
         return resID;
     }
 

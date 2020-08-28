@@ -3,11 +3,11 @@ package edu.mit.vkwang;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,22 +18,27 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConstraintLayout screen;
-    private ArrayList<String> combos;
-    private CardSlot[] cardSlots;
-    private Card[] cards;
-    private OpSlot[] opSlots;
-    private Operation[] ops;
+    ConstraintLayout screen;
+    ArrayList<String> combos;
+    CardSlot[] cardSlots;
+    Card[] cards;
+    OpSlot[] opSlots;
+    Operation[] ops;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            combos = savedInstanceState.getStringArrayList("combos");
+        }
+        else{
+            readComboFile();
+        }
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
         screen = (ConstraintLayout) findViewById(R.id.screen);
 
-        readComboFile();
         initCardSlots();
         initCards();
         initOpSlots();
@@ -42,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState){
-
+        outState.putStringArrayList("combos", combos);
+        super.onSaveInstanceState(outState);
     }
 
     public boolean checkWin(){
@@ -141,12 +147,76 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void initOpSlots(){
         int resID = getResources().getIdentifier("emptyop", "drawable", getPackageName());
         opSlots = new OpSlot[3];
         opSlots[0] = new OpSlot((ImageView) findViewById(R.id.opSlot1), resID);
         opSlots[1] = new OpSlot((ImageView) findViewById(R.id.opSlot2), resID);
         opSlots[2] = new OpSlot((ImageView) findViewById(R.id.opSlot3), resID);
+
+        for(final OpSlot opSlot : opSlots){
+
+            opSlot.getImg().setOnTouchListener(new View.OnTouchListener(){
+                float startX = 0;
+                float startY = 0;
+                float xCoOrdinate = 0;
+                float yCoOrdinate = 0;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(opSlot.getOp() != null) {
+                        switch (event.getActionMasked()) {
+                            case MotionEvent.ACTION_DOWN:
+                                startX = view.getX();
+                                startY = view.getY();
+                                xCoOrdinate = view.getX() - event.getRawX();
+                                yCoOrdinate = view.getY() - event.getRawY();
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                view.animate().x(event.getRawX() + xCoOrdinate);
+                                view.animate().y(event.getRawY() + yCoOrdinate);
+                                view.animate().setDuration(0);
+                                view.animate().start();
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                float eventX = event.getRawX();
+                                float eventY = event.getRawY();
+
+                                OpSlot newOpSlot = null;
+                                Operation opToSet = null;
+                                for(OpSlot s : opSlots){
+                                    float[] dimensions = s.getDimensions();
+                                    float height = dimensions[0];
+                                    float width = dimensions[1];
+                                    float x = dimensions[2];
+                                    float y = dimensions[3];
+
+                                    if ((eventX > x && eventX < x + width && eventY > y && eventY < y + height)) {
+                                        newOpSlot = s;
+                                        opToSet = opSlot.getOp();
+                                        break;
+                                    }
+                                }
+
+                                opSlot.setOp(null);
+
+                                if(newOpSlot != null) {
+                                    if(newOpSlot.getOp() != null){
+                                        opSlot.setOp(newOpSlot.getOp());
+                                    }
+                                    newOpSlot.setOp(opToSet);
+                                }
+
+                                view.animate().x(startX);
+                                view.animate().y(startY);
+                        }
+                    }
+                    return true;
+                }
+            });
+        }
+
     }
 
     public void initOps(){
@@ -175,10 +245,6 @@ public class MainActivity extends AppCompatActivity {
             int resID = getResources().getIdentifier(opID, "drawable", getPackageName());
             ops[i] = new Operation(image, resID, types[i], opSlots);
         }
-    }
-
-    public void newGame(){
-
     }
 
     public void sendMessage(View view){

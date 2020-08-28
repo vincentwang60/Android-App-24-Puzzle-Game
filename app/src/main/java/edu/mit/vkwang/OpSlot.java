@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 public class OpSlot {
 
-    private ImageView opSlot;
+    private ImageView img;
     private int resID;
     private Operation op;
     private float height;
@@ -21,66 +21,34 @@ public class OpSlot {
     private float yCoOrdinate;
 
     @SuppressLint("ClickableViewAccessibility")
-    public OpSlot(final ImageView opSlot, int resID, final MainActivity mainActivity){
-            this.opSlot = opSlot;
+    public OpSlot(final ImageView img, int resID){
+            this.img = img;
             this.resID = resID;
             op = null;
-            opSlot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            img.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 public void onGlobalLayout() {
-                    height = opSlot.getHeight();
-                    width = opSlot.getWidth();
-                    x = opSlot.getLeft();
-                    y = opSlot.getTop();
+                    height = img.getHeight();
+                    width = img.getWidth();
+                    x = img.getLeft();
+                    y = img.getTop();
 
-                    opSlot.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    img.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
+    }
 
-            opSlot.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    if(op != null) {
-                        switch (event.getActionMasked()) {
-                            case MotionEvent.ACTION_DOWN:
-                                startX = view.getX();
-                                startY = view.getY();
-                                xCoOrdinate = view.getX() - event.getRawX();
-                                yCoOrdinate = view.getY() - event.getRawY();
-                                break;
-                            case MotionEvent.ACTION_MOVE:
-                                view.animate().x(event.getRawX() + xCoOrdinate);
-                                view.animate().y(event.getRawY() + yCoOrdinate);
-                                view.animate().setDuration(0);
-                                view.animate().start();
-                                break;
-                            case MotionEvent.ACTION_UP:
-                                float eventX = event.getRawX();
-                                float eventY = event.getRawY();
-
-                                OpSlot newOpSlot = null;
-                                OpSlot[] opSlots = mainActivity.opSlots;
-
-                                if (!(eventX > x && eventX < x + width && eventY > y && eventY < y + height)) {
-                                    setOp(null);
-                                }
-                                view.animate().x(startX);
-                                view.animate().y(startY);
-                        }
-                    }
-                    return true;
-                }
-            });
+    public ImageView getImg(){
+        return img;
     }
 
     public void setOp(Operation toSet){
         op = toSet;
         if(op != null){
             int opResID = op.getResID();
-            System.out.println("in opslot, resID: " + resID);
-            opSlot.setImageResource(opResID);
+            img.setImageResource(opResID);
         }
         else{
-            opSlot.setImageResource(resID);
+            img.setImageResource(resID);
         }
     }
 
