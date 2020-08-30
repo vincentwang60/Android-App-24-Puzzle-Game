@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(result == 24){
-            startActivity(new Intent(this, StartScreen.class));
+            startActivity(new Intent(this, EndScreen.class));
         }
     }
 
@@ -376,6 +376,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void sendEndMessage(View view){
         Intent intent = new Intent(this, StartScreen.class);
         startActivity(intent);
     }
